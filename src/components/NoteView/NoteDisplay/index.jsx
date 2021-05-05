@@ -4,13 +4,11 @@ import Showdown from 'showdown';
 const converter = new Showdown.Converter();
 
 const NoteDisplay = ({data}) => {
-  const {titleValue, textValue} = data;
-
   return (
     <>
     <h1>Display</h1>
-    <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(titleValue) }}/>
-    <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(textValue) }}/>
+    <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(data?.titleValue) }}/>
+    <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(data?.textValue) }}/>
     </>
   );
 }
