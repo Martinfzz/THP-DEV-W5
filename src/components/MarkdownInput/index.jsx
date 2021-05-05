@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const MarkdownInput = (props) => {
+  const {titleValue, textValue} = props.data;
+
+  useEffect(() => {
+    document.querySelector(".inputValue").value = titleValue;
+    document.querySelector(".textValue").value = textValue;
+  }, [titleValue, textValue])
+
 
   return (
     <>
-      <input onChange={(e) => props.onChangeTitle(e.target.value)} /><br/><br/>
-      <textarea onChange={(e) => props.onChangeText(e.target.value)} /><br/>
-      <button>Sauvegarder</button>
+      <input className="inputValue" onChange={(e) => {console.log(e.target.value); props.onChangeTitle(e.target.value)}} /><br/><br/>
+      <textarea className="textValue" onChange={(e) => props.onChangeText(e.target.value)} /><br/>
+      <button onClick={() => props.handleSave()}>Sauvegarder</button>
     </>
   );
 }

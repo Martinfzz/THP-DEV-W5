@@ -5,9 +5,6 @@ const converter = new Showdown.Converter();
 
 const NoteDisplay = ({data}) => {
   const {titleValue, textValue} = data;
-  
-  console.log(titleValue);
-  console.log(textValue);
 
   return (
     <>
