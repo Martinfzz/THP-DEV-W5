@@ -7,11 +7,7 @@ const Notes = ({data, onHandleNote, onSelectNote}) => {
     <div>
       <button onClick={onHandleNote}>Ajouter une note</button>
       {data.map((note) => (
-            <NoteListDisplay
-                key={note.id}
-                note={note}
-                onSelect={() => onSelectNote(note)}
-            />
+            <NoteListDisplay note={note} onSelect={() => onSelectNote(note)}/>
         ))}
     </div>
   )

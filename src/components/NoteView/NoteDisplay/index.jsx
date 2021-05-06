@@ -4,6 +4,7 @@ import Showdown from 'showdown';
 const converter = new Showdown.Converter();
 
 const NoteDisplay = ({data}) => {
+  
   return (
     <>
     <h1>Display</h1>

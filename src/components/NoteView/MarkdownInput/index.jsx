@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const MarkdownInput = (props) => {
+  // To display the text into the form if it's empty or not
   const emptyData = { titleValue: '', textValue: '' };
-
   const { titleValue, textValue } = props.data || emptyData;
-
-  useEffect(() => {
-    document.querySelector(".inputValue").value = titleValue;
-    document.querySelector(".textValue").value = textValue;
-  }, [titleValue, textValue])
-
 
   return (
     <>

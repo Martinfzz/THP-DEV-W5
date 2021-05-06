@@ -3,58 +3,41 @@ import { v4 as generateUuid } from 'uuid';
 import Notes from '../Notes';
 import NoteView from '../NoteView';
 
-const emptyNote = { id: null, titleValue: '', textValue: '' };
+
 
 const BookNotes = () => {
+  // Constants used
   const [note, setNote] = useState(JSON.parse(localStorage.getItem('blocNote')) || []);
   const [selectedNote, setSelectedNote] = React.useState(null);
-  
-  // useEffect(() => {
-  //   setDisplayValue(note);
-  // }, [note])
-  const handleNote = () => {
-    setSelectedNote(emptyNote);
-  }
+  const emptyNote = { id: null, titleValue: '', textValue: '' };
 
-  const handleSelectNote = (note) => {
-    setSelectedNote(note);
-  };
-  
-
-
+  // To save the note
   const inputSave = (savedNote) => {
-    
+    // If the note you want to save has no id we create one.
+    // If the note has an id we save the note with the current id
     if (savedNote.id) {
-      setNote(note.map((element) => (
-          (element.id === savedNote.id) ? savedNote : element
-      )));
-      return;
+      setNote(note.map((element) => ((element.id === savedNote.id) ? savedNote : element)));
+    } else {
+      const newNote = { ...savedNote, id: generateUuid() };
+      setNote((prevNote) => [...prevNote, newNote]);
+      setSelectedNote(newNote);
     }
-
-    const newNote = { ...savedNote, id: generateUuid() };
-    console.log(newNote);
-    console.log(typeof note);
-    setNote((prevNote) => [...prevNote, newNote]);
-    setSelectedNote(newNote);
-    
-    //displaySave();
   }
 
-  // const displaySave = () => {
-  //   const dataStorage = JSON.parse(localStorage.getItem('blocNote'));
-  //   setBlocNote(dataStorage);
-  // }
-  
-  
-
+  // Everytime the note is change, we save it in the loca storage
   useEffect(() => {
     localStorage.setItem('blocNote', JSON.stringify(note));
   }, [note]);
 
-  
-  console.log(note)
-  console.log(JSON.parse(localStorage.getItem('blocNote')))
-    
+  // When we create a new note we initialize it with empty arguments
+  const handleNote = () => {
+    setSelectedNote(emptyNote);
+  }
+
+  // When we select a specific note
+  const handleSelectNote = (note) => {
+    setSelectedNote(note);
+  };
 
   return (
     <>
