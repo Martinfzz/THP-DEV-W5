@@ -1,17 +1,15 @@
 import React from 'react';
+const removeMd = require('remove-markdown');
 
 const NoteListDisplay = ({ note, onSelect }) => {
-    const { id, titleValue, textValue } = note;
-    const safeText = textValue.replace(/(#|\*|\[|\])+/gm, '');
-    const shortText = safeText.substr(0, 60);
+    const { titleValue, textValue } = note;
+    const plainText = removeMd(textValue);
+    const shortText = plainText.substr(0, 60);
 
     return (
-        <button type="button" className="NoteListItem" onClick={onSelect}>
-            <h3 className="NoteListItem__title">{titleValue}</h3>
-            <p className="NoteListItem__text">
-                {shortText}{safeText.length > shortText.length && '...'}
-            </p>
-            <p className="NoteListItem__id">#{id}</p>
+        <button className="btn btn-dark w-100" onClick={onSelect}>
+            <h3 className="text-danger font-weight-bold">{titleValue}</h3>
+            <p className="text-light">{shortText}{plainText.length > shortText.length && '...'}</p>
         </button>
     );
 };

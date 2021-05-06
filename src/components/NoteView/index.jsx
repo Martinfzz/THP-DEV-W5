@@ -32,8 +32,10 @@ const NoteView = (props) => {
     <>
     {props.selectedNote && (
       <>
-    <NoteDisplay data={currentNote}/>
-    <MarkdownInput onChange={handleChange} onSubmit={handleSubmit} data={currentNote}/>
+      <div className="d-flex flex-column mx-5 mt-3 w-75">
+        <NoteDisplay data={currentNote}/>
+        <MarkdownInput onChange={handleChange} onSubmit={handleSubmit} data={currentNote}/>
+      </div>
     </>
     )}
     </>

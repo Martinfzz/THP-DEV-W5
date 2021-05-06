@@ -41,8 +41,10 @@ const BookNotes = () => {
 
   return (
     <>
+    <div className="d-flex">
     <Notes data={note} onHandleNote={handleNote} onSelectNote={handleSelectNote}/>
     <NoteView selectedNote={selectedNote} onInputSave={inputSave}/>
+    </div>
     </>
   );
 }

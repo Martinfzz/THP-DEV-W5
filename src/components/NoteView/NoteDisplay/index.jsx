@@ -7,9 +7,10 @@ const NoteDisplay = ({data}) => {
   
   return (
     <>
-    <h1>Display</h1>
-    <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(data?.titleValue) }}/>
-    <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(data?.textValue) }}/>
+    <div className="d-flex flex-column">
+      <h3 className="text-danger font-weight-bold" dangerouslySetInnerHTML={{ __html: converter.makeHtml(data?.titleValue) }}/>
+      <p className="text-light" dangerouslySetInnerHTML={{ __html: converter.makeHtml(data?.textValue) }}/>
+    </div>
     </>
   );
 }
